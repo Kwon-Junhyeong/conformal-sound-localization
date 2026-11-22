@@ -11,8 +11,6 @@ HOP = 256
 DEVICE = torch.device('cpu')
 
 
-# ---------- templates ----------
-
 def load_bem_table(fp, panels, fstep=6, synthetic=False):
     """BEM h5 (p: panel x direction x 257 bins up to 8 kHz, doa_grid) -> unit cross-spectra of the microphone pairs.
     The table is in the e^{+jwt} convention. Scenes synthesized from the table share it; recordings need the conjugate."""
@@ -71,8 +69,6 @@ def doa_grid(step=2.0):
     AZ, EL = np.meshgrid(az, el, indexing='ij')
     return np.stack([np.cos(EL) * np.cos(AZ), np.cos(EL) * np.sin(AZ), np.sin(EL)], -1).reshape(-1, 3).astype('float32')
 
-
-# ---------- STFT, cross-spectra, matching ----------
 
 def stft_window(device):
     return torch.hann_window(NFFT, device=device, dtype=torch.float32)

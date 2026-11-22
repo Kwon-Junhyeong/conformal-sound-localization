@@ -43,8 +43,6 @@ def scenes(folder, names=None):
     return dict(x=np.stack(x), d=np.stack(d).astype(np.float32), rec=np.array(names))
 
 
-# ---------- LOCATA ----------
-
 def read_pos(path, nmax=None):
     with open(path) as f:
         hdr = f.readline().strip().split('\t')
